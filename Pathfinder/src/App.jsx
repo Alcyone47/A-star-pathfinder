@@ -1,16 +1,12 @@
-import React from 'react'
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
 import MapContainer from './components/MapContainer';
 
 function App() {
-  <>
-    return (
-      <div className="App">
-        <MapContainer />
-      </div>
-    )
-  </>
+  return (
+    <div className="App">
+      <MapContainer />
+    </div>
+  );
 }
 
-export default App
+export default App;

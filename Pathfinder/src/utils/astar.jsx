@@ -6,7 +6,7 @@ export function aStar(start, end, grid) {
   function heuristic(a, b) {
     const dx = Math.abs(a.x - b.x);
     const dy = Math.abs(a.y - b.y);
-    return Math.sqrt(dx * dx + dy * dy);
+    return dx + dy; // Manhattan distance for grid
   }
 
   function getNeighbors(node, grid) {
@@ -35,44 +35,39 @@ export function aStar(start, end, grid) {
   }
 
   function aStarAlgorithm(start, end, grid) {
-    const openSet = [start];
-    const cameFrom = {};
-    const gScore = {};
-    const fScore = {};
+    let openSet = [start];
+    const cameFrom = new Map();
+    const gScore = new Map();
+    const fScore = new Map();
 
-    gScore[start] = 0;
-    fScore[start] = heuristic(start, end);
+    gScore.set(start, 0);
+    fScore.set(start, heuristic(start, end));
 
     while (openSet.length > 0) {
-      let current = openSet[0];
-      for (const node of openSet) {
-        if (fScore[node] < fScore[current]) {
-          current = node;
-        }
-      }
+      let current = openSet.reduce((acc, node) => fScore.get(node) < fScore.get(acc) ? node : acc);
 
-      if (current === end) {
+      if (current.x === end.x && current.y === end.y) {
         const path = [];
-        let reconstructNode = end;
-        while (reconstructNode !== start) {
-          path.push(reconstructNode);
-          reconstructNode = cameFrom[reconstructNode];
+        let temp = current;
+        while (temp) {
+          path.push(temp);
+          temp = cameFrom.get(temp);
         }
-        path.push(start);
         return path.reverse();
       }
 
-      openSet.splice(openSet.indexOf(current), 1);
+      openSet = openSet.filter(node => node !== current);
 
       const neighbors = getNeighbors(current, grid);
 
       for (const neighbor of neighbors) {
-        const tentativeGScore = gScore[current] + 1;
+        const tentativeGScore = gScore.get(current) + 1; // Assuming uniform cost
 
-        if (!gScore[neighbor] || tentativeGScore < gScore[neighbor]) {
-          cameFrom[neighbor] = current;
-          gScore[neighbor] = tentativeGScore;
-          fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, end);
+        if (tentativeGScore < (gScore.get(neighbor) || Infinity)) {
+          cameFrom.set(neighbor, current);
+          gScore.set(neighbor, tentativeGScore);
+          fScore.set(neighbor, tentativeGScore + heuristic(neighbor, end));
+
           if (!openSet.includes(neighbor)) {
             openSet.push(neighbor);
           }

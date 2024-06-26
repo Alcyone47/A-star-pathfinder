@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MapComponent from './MapComponent';
 import { aStar } from '../utils/astar';
-import { createGrid } from '../utils/grid';
+import { createGrid } from '../utils/createGrid';
 import { geocode } from '../utils/geocode';
 
 const MapContainer = () => {
@@ -28,10 +28,9 @@ const MapContainer = () => {
       setEndPoint(endCoords);
 
       // Create a grid for pathfinding (dummy implementation)
-      const grid = createGrid(10, 10); // Example grid creation
+      const grid = createGrid(1000, 1000); // Example grid creation
       console.log('Grid:', grid);
 
-      // Calculate the path using A* algorithm
       const calculatedPath = aStar(startPoint, endPoint, grid); // Ensure startPoint and endPoint are defined correctly
       console.log('Calculated path:', calculatedPath);
 

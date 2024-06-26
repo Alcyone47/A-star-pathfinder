@@ -1,10 +1,12 @@
 import React from 'react';
-import MapContainer from './components/MapContainer';
+import PathfindingVisualizer from './components/PathfindingVisualizer';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   return (
-    <div className="App">
-      <MapContainer />
+    <div className='container'>
+      <h1 className='header'>A* Pathfinder.</h1>
+      <div className='mapContainer'><PathfindingVisualizer /></div>
     </div>
   );
 }

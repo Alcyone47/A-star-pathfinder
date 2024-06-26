@@ -24,10 +24,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 50vw;
+  max-height: 100vh;
 }
 
 h1 {
@@ -51,6 +53,43 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.container{
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    margin: auto;
+}
+
+.leaflet-container{
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.header{
+    margin-bottom: 20px;
+}
+
+input {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin-right: 20px;
+}
+input:hover {
+  border-color: #646cff;
+}
+input:focus,
+input:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 

@@ -20,7 +20,6 @@ const MapComponent = ({ startPoint, endPoint }) => {
         const data = await response.json();
         const route = data.routes[0];
 
-        // Extract coordinates from the route geometry
         const coordinates = route.geometry.coordinates.map(coord => ({
           lat: coord[1],
           lng: coord[0]
@@ -47,7 +46,7 @@ const MapComponent = ({ startPoint, endPoint }) => {
   }, [path]);
 
   const handleClearRoute = () => {
-    setPath([]); // Clear the path by setting an empty array
+    setPath([]);
   };
 
   return (
@@ -61,7 +60,6 @@ const MapComponent = ({ startPoint, endPoint }) => {
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
-          attribution='© OpenStreetMap contributors'
         />
         {startPoint && (
           <Marker position={[startPoint.lat, startPoint.lng]}>

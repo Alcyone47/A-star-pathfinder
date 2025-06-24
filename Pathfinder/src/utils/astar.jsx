@@ -1,12 +1,12 @@
 export function aStar(start, end, grid) {
   if (!start || !end || !grid) {
-    throw new Error('Invalid parameters for A* algorithm');
+    throw new Error('Invalid parameters');
   }
 
   function heuristic(a, b) {
     const dx = Math.abs(a.x - b.x);
     const dy = Math.abs(a.y - b.y);
-    return dx + dy; // Manhattan distance for grid
+    return dx + dy; 
   }
 
   function getNeighbors(node, grid) {
@@ -61,7 +61,7 @@ export function aStar(start, end, grid) {
       const neighbors = getNeighbors(current, grid);
 
       for (const neighbor of neighbors) {
-        const tentativeGScore = gScore.get(current) + 1; // Assuming uniform cost
+        const tentativeGScore = gScore.get(current) + 1;
 
         if (tentativeGScore < (gScore.get(neighbor) || Infinity)) {
           cameFrom.set(neighbor, current);
@@ -80,3 +80,4 @@ export function aStar(start, end, grid) {
 
   return aStarAlgorithm(start, end, grid);
 }
+

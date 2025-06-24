@@ -31,7 +31,6 @@ const PathfindingVisualizer = () => {
       const grid = createGrid(gridWidth, gridHeight);
       console.log('Grid:', grid);
 
-      // Calculate scale factors to normalize coordinates
       const latMin = Math.min(startCoords.lat, endCoords.lat);
       const latMax = Math.max(startCoords.lat, endCoords.lat);
       const lngMin = Math.min(startCoords.lng, endCoords.lng);

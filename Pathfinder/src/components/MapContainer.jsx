@@ -7,8 +7,8 @@ import { geocode } from '../utils/geocode';
 const MapContainer = () => {
   const [startLocation, setStartLocation] = useState('');
   const [endLocation, setEndLocation] = useState('');
-  const [startPoint, setStartPoint] = useState({ lat: 0, lng: 0 }); // Initial coordinates
-  const [endPoint, setEndPoint] = useState({ lat: 0, lng: 0 }); // Initial coordinates
+  const [startPoint, setStartPoint] = useState({ lat: 0, lng: 0 });
+  const [endPoint, setEndPoint] = useState({ lat: 0, lng: 0 });
   const [path, setPath] = useState([]);
 
   const calculatePath = async () => {
@@ -17,7 +17,6 @@ const MapContainer = () => {
       console.log('Start Location:', startLocation);
       console.log('End Location:', endLocation);
 
-      // Geocode start and end locations
       const startCoords = await geocode(startLocation);
       console.log('Start coordinates:', startCoords);
 
@@ -27,11 +26,10 @@ const MapContainer = () => {
       setStartPoint(startCoords);
       setEndPoint(endCoords);
 
-      // Create a grid for pathfinding (dummy implementation)
-      const grid = createGrid(1000, 1000); // Example grid creation
+      const grid = createGrid(1000, 1000); 
       console.log('Grid:', grid);
 
-      const calculatedPath = aStar(startPoint, endPoint, grid); // Ensure startPoint and endPoint are defined correctly
+      const calculatedPath = aStar(startPoint, endPoint, grid);
       console.log('Calculated path:', calculatedPath);
 
       setPath(calculatedPath);
